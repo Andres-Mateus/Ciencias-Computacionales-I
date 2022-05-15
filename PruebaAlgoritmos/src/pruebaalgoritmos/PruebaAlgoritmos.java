@@ -17,16 +17,22 @@ public class PruebaAlgoritmos {
         
         
         nums100 = leerNums.leerDatosEnteros("C:\\Users\\andresfelipe\\Documents"
-                                        + "\\NetBeansProjects\\PruebaAlgoritmos"
-                                        + "\\src\\ArchivosDeNumeros\\T100.txt", nums100);
+                                            + "\\Repositorios de GITHUB\\"
+                                            + "Ciencias-Computacionacionales-I\\"
+                                            + "PruebaAlgoritmos\\src\\"
+                                            + "ArchivosDeNumeros\\T100.txt", nums100);
         
         nums1000 = leerNums.leerDatosEnteros("C:\\Users\\andresfelipe\\Documents"
-                                        + "\\NetBeansProjects\\PruebaAlgoritmos"
-                                        + "\\src\\ArchivosDeNumeros\\T1000.txt", nums1000);
+                                            + "\\Repositorios de GITHUB\\"
+                                            + "Ciencias-Computacionacionales-I\\"
+                                            + "PruebaAlgoritmos\\src\\"
+                                            + "ArchivosDeNumeros\\T1000.txt", nums1000);
         
         nums10000 = leerNums.leerDatosEnteros("C:\\Users\\andresfelipe\\Documents"
-                                        + "\\NetBeansProjects\\PruebaAlgoritmos"
-                                        + "\\src\\ArchivosDeNumeros\\T10000.txt", nums10000);
+                                            + "\\Repositorios de GITHUB\\"
+                                            + "Ciencias-Computacionacionales-I\\"
+                                            + "PruebaAlgoritmos\\src\\"
+                                            + "ArchivosDeNumeros\\T10000.txt", nums10000);
         
        //--------------Organizar numeros----------------
        
@@ -80,6 +86,10 @@ public class PruebaAlgoritmos {
        
        numsOrganizados = organizarNums.algoritmoMergeSort();
        
+       /*for(int i = 0; i < numsOrganizados.length; i++){
+           System.out.println("Numero "+i+": "+numsOrganizados[i]);
+       }*/
+       
        
        organizarNums.setArrayNumeros(nums1000);
        
@@ -89,7 +99,7 @@ public class PruebaAlgoritmos {
        
        numsOrganizados = organizarNums.algoritmoMergeSort();
        
-       
+      
     }
     
 }

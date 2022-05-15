@@ -4,7 +4,7 @@ public class AlgoritmosOrdenamiento {
     private String nomAlgoritmo;
     private int[] arrayNumeros;
     private int operacionesBasicas;
-    private double tiempoEstimado;
+    private long tiempoEstimado;
     
     public AlgoritmosOrdenamiento(){
         this.nomAlgoritmo = "";
@@ -130,6 +130,7 @@ public class AlgoritmosOrdenamiento {
         int[] numerosOrdenados = this.arrayNumeros;
         
         //Algoritmo
+        numerosOrdenados = mergeSort(numerosOrdenados);
         
         this.tiempoEstimado = calcularTiempo(this.tiempoEstimado, System.nanoTime());
         
@@ -138,20 +139,102 @@ public class AlgoritmosOrdenamiento {
         return numerosOrdenados;
     }
     
+    private int[] mergeSort(int[] arregloNums){
+        this.operacionesBasicas++;
+        if(arregloNums.length <= 1){
+            return arregloNums;
+        }else{
+            
+            int[] derecha;
+            int[] izquierda;
+
+            derecha = new int[arregloNums.length / 2];
+
+            if(arregloNums.length % 2 == 0){
+                izquierda = new int[arregloNums.length/2];
+            }else{
+                izquierda = new int[(arregloNums.length/2+1)];
+            }
+
+            int i;
+
+            for(i = 0; i < izquierda.length; i++){
+
+                izquierda[i] = arregloNums[i];
+            }
+
+            int z = 0;
+
+            for(int j = i; j < arregloNums.length; j++){
+                derecha[z] = arregloNums[j];
+                z++;
+            }
+
+            //Recursividad
+
+            int [] arrayOrdenado;
+            arrayOrdenado = Merge(mergeSort(izquierda), mergeSort(derecha));
+
+            return arrayOrdenado;
+        }
+    }
+    
+    private int[] Merge(int[] array1, int[] array2){
+        
+        int i = 0;
+        int j = 0;
+        
+        int[] arrayOrdenado = new int[array1.length + array2.length];
+        
+        for (int k = 0; k < arrayOrdenado.length; k++) {
+            this.operacionesBasicas++;
+            if (array1[i] > array2[j]) {
+                
+                arrayOrdenado[k] = array2[j];
+                j++;
+            }else{
+                
+                arrayOrdenado[k] = array1[i];
+               i++;
+            }
+            
+            if (i == array1.length) {
+                k++;
+                
+                for (j = j; j < array2.length; j++) {
+                    arrayOrdenado[k] = array2[j];
+                    k++;
+                   
+                }
+            }else if(j == array2.length){
+                k++;
+                
+                 for (i = i; i < array1.length; i++) {
+                    arrayOrdenado[k] = array1[i];
+                    k++;
+                    
+                }
+            }
+        }
+        
+        
+        return arrayOrdenado;
+    }
+    
     private void resetValues(){
         this.arrayNumeros = null;
         this.operacionesBasicas = 0;
         this.tiempoEstimado = 0;
     }
     
-    private double calcularTiempo(double tinicial, double tfinal){
-        return ((tfinal-tinicial)/1000000);
+    private long calcularTiempo(long tinicial, long tfinal){
+        return (tfinal-tinicial);
     }
     
     private void mostrarResultados(){
         System.out.println("Algoritmo: "+ this.nomAlgoritmo 
-                                +"\nOperaciones Basicas: "+ this.operacionesBasicas
-                                +"\nTiempoEstimado: "+ this.tiempoEstimado+" ms"
+                                +"\nOperaciones Básicas: "+ this.operacionesBasicas
+                                +"\nTiempoEstimado: "+ this.tiempoEstimado+" ns"
                                 +"\n--------------------------------------");
     }
 }
