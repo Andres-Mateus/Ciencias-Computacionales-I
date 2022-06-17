@@ -6,14 +6,22 @@ public class CompararCliente implements Comparator<Cliente>{
     
     @Override
     public int compare(Cliente c1, Cliente c2){
-        if(compararRequisito(c1.isDiscapacidad(),c2.isDiscapacidad()) != 0){
-            return compararRequisito(c1.isDiscapacidad(),c2.isDiscapacidad());
-        }else if(compararRequisito(c1.isEmbarazo(),c2.isEmbarazo()) != 0){
-            return compararRequisito(c1.isEmbarazo(),c2.isEmbarazo());
-        }else if(compararEdad(c1.getEdad(),c2.getEdad()) != 0){
-            return compararEdad(c1.getEdad(),c2.getEdad());
+        if((compararRequisito(c1.isDiscapacidad(),c2.isDiscapacidad()) == -1 
+                && compararEdad(c1.getEdad(),c2.getEdad()) == -1) || 
+                (compararRequisito(c1.isEmbarazo(),c2.isEmbarazo()) == -1 &&
+                compararEdad(c1.getEdad(),c2.getEdad()) == -1)){
+            return -1;
         }else{
-            return 0;
+            if(compararRequisito(c1.isDiscapacidad(),c2.isDiscapacidad()) != 0){
+            return compararRequisito(c1.isDiscapacidad(),c2.isDiscapacidad());
+            }else if(compararRequisito(c1.isEmbarazo(),c2.isEmbarazo()) != 0){
+                return compararRequisito(c1.isEmbarazo(),c2.isEmbarazo());
+            }else if(compararEdad(c1.getEdad(),c2.getEdad()) != 0){
+                return compararEdad(c1.getEdad(),c2.getEdad());
+            }else{
+                return 0;
+            }
+            
         }
     
     }
