@@ -38,10 +38,16 @@ public class Cliente implements Comparable<Cliente>{
         this.edad = edad;
     }
     
+    @Override
+    public String toString(){
+        return ("Cliente{" + this.nombre + ": Discapacidad -> " + this.discapacidad 
+                    + ", Embarazo -> "+ this.embarazo
+                    + ", Edad -> "+ this.edad + ".}");
+    }
     
     @Override
     public int compareTo(Cliente o) {
-        return 0;
+        return 1;
     }
     
 }
