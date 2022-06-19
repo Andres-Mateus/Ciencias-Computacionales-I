@@ -47,7 +47,7 @@ public class Cliente implements Comparable<Cliente>{
     
     @Override
     public int compareTo(Cliente o) {
-        return 1;
+        return 0;
     }
     
 }
