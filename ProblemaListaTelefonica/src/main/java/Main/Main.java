@@ -20,7 +20,10 @@ public class Main {
            int n = 0;
            n = sc.nextInt();
            
-           
+           if(n < 1 || n > 100000){
+               contador--;
+               continue;
+           }
            
            for(int i = -1; i < n; i++){
                
@@ -36,14 +39,17 @@ public class Main {
            
            Collections.sort(numsTelefonos);
            
-           /*for(int numero: numsTelefonos){
-               System.out.println(numero);
-           }*/
-           System.out.println("");
-           numsRepetidos(numsTelefonos);
-           System.out.println("");
+//           for(int numero: numsTelefonos){
+//               System.out.println(numero);
+//           }
            
-           contador--;
+            numsRepetidos(numsTelefonos);
+           
+            contador--;
+            
+            if(contador > 0)
+                System.out.println("");
+          
        }
    }
    
