@@ -16,6 +16,10 @@ public class ArbolesYNodos {
         arbol.insertarNodoIterativo(1);
         
         arbol.preOrden(arbol.getRaíz());
+        System.out.println("");
+        arbol.inOrden(arbol.getRaíz());
+        System.out.println("");
+        arbol.postOrden(arbol.getRaíz());
         
     }
     
