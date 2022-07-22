@@ -15,12 +15,17 @@ public class ArbolesYNodos {
         arbol.insertarNodoRecursivo(arbol.getRaíz(), 12);
         arbol.insertarNodoIterativo(1);
         
+        //arbol.imprimir();
+        
+        
         arbol.preOrden(arbol.getRaíz());
         System.out.println("");
         arbol.inOrden(arbol.getRaíz());
         System.out.println("");
+        arbol.inOrdenInverso(arbol.getRaíz());
+        System.out.println("");
         arbol.postOrden(arbol.getRaíz());
-        
+        System.out.println("");
     }
     
 }

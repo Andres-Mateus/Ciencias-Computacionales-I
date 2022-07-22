@@ -23,7 +23,16 @@ public class ArbolOrdenamiento<T extends Comparable<T>> {
     public boolean isInterno(NodoOrdenamiento<T> nodo) {
         return !isHoja(nodo);
     }
-
+    
+    public void imprimir(){
+        
+        System.out.print("(");
+        if(this.raiz != null){
+            raiz.imprimir();
+        }
+        System.out.print(")");
+    }
+    
     public NodoOrdenamiento<T> insertarNodoRecursivo(NodoOrdenamiento<T> padre, T valor) {
 
         NodoOrdenamiento<T> nodo = null;
@@ -41,7 +50,7 @@ public class ArbolOrdenamiento<T extends Comparable<T>> {
                 } else {
                     nodo = new NodoOrdenamiento<>(valor);
                     nodo.setPadre(padre);
-                    nodo.setNodoIzq(nodo);
+                    padre.setNodoIzq(nodo);
                 }
 
             } else {
@@ -51,7 +60,7 @@ public class ArbolOrdenamiento<T extends Comparable<T>> {
                 } else {
                     nodo = new NodoOrdenamiento<>(valor);
                     nodo.setPadre(padre);
-                    nodo.setNodoDer(nodo);
+                    padre.setNodoDer(nodo);
                 }
 
             }
@@ -84,7 +93,7 @@ public class ArbolOrdenamiento<T extends Comparable<T>> {
                     } else {
                         nodo = new NodoOrdenamiento<>(valor);
                         nodo.setPadre(aux);
-                        nodo.setNodoIzq(nodo);
+                        aux.setNodoIzq(nodo);
                         insertado = true;
 
                     }
@@ -96,7 +105,7 @@ public class ArbolOrdenamiento<T extends Comparable<T>> {
                     } else {
                         nodo = new NodoOrdenamiento<>(valor);
                         nodo.setPadre(aux);
-                        nodo.setNodoDer(nodo);
+                        aux.setNodoDer(nodo);
                         insertado = true;
 
                     }
@@ -113,7 +122,7 @@ public class ArbolOrdenamiento<T extends Comparable<T>> {
 
     public void preOrden(NodoOrdenamiento<T> nodo) {
 
-        System.out.println(nodo.getValor().toString());
+        System.out.print(nodo.getValor().toString()+ " ");
 
         if (nodo.getNodoIzq() != null) {
             preOrden(nodo.getNodoIzq());
@@ -128,28 +137,42 @@ public class ArbolOrdenamiento<T extends Comparable<T>> {
     public void inOrden(NodoOrdenamiento<T> nodo) {
 
         if (nodo.getNodoIzq() != null) {
-            preOrden(nodo.getNodoIzq());
+            inOrden(nodo.getNodoIzq());
         }
 
-        System.out.println(nodo.getValor().toString());
+        System.out.print(nodo.getValor().toString()+ " ");
 
         if (nodo.getNodoDer() != null) {
-            preOrden(nodo.getNodoDer());
+            inOrden(nodo.getNodoDer());
         }
 
     }
+    
+    public void inOrdenInverso(NodoOrdenamiento<T> nodo) {
 
+        if (nodo.getNodoDer() != null) {
+            inOrdenInverso(nodo.getNodoDer());
+        }
+
+        System.out.print(nodo.getValor().toString()+ " ");
+        
+        if (nodo.getNodoIzq() != null) {
+            inOrdenInverso(nodo.getNodoIzq());
+        }
+        
+    }
+    
     public void postOrden(NodoOrdenamiento<T> nodo) {
 
         if (nodo.getNodoIzq() != null) {
-            preOrden(nodo.getNodoIzq());
+            postOrden(nodo.getNodoIzq());
         }
 
         if (nodo.getNodoDer() != null) {
-            preOrden(nodo.getNodoDer());
+            postOrden(nodo.getNodoDer());
         }
 
-        System.out.println(nodo.getValor().toString());
+        System.out.print(nodo.getValor().toString()+ " ");
 
     }
 

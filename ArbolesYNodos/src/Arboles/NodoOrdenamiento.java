@@ -1,6 +1,6 @@
 package Arboles;
 
-public class NodoOrdenamiento<T extends Comparable<T>>{
+public class NodoOrdenamiento<T extends Comparable<T>> extends ArbolOrdenamiento{
 
     private T valor;
     private NodoOrdenamiento<T> padre, nodoIzq, nodoDer;
@@ -45,5 +45,22 @@ public class NodoOrdenamiento<T extends Comparable<T>>{
     public void setNodoDer(NodoOrdenamiento<T> nodoDer) {
         this.nodoDer = nodoDer;
     }
-
+    
+    @Override
+    public void imprimir() {
+        
+        
+        System.out.print(valor);
+        
+        System.out.print("(");
+        if(nodoIzq != null){
+           nodoIzq.imprimir();
+        }
+        System.out.print(",");
+        if(nodoDer != null){
+            nodoDer.imprimir();
+        }
+        System.out.print(")");
+    }
+    
 }
