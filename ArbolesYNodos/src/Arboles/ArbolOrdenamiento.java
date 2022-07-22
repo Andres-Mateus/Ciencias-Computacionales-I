@@ -4,13 +4,14 @@ public class ArbolOrdenamiento<T extends Comparable<T>> {
 
     private NodoOrdenamiento<T> raiz;
 
+    public NodoOrdenamiento<T> getRaiz() {
+        return this.raiz;
+    }
+    
     public boolean isVacio() {
         return this.raiz == null;
     }
 
-    public NodoOrdenamiento<T> getRaíz() {
-        return this.raiz;
-    }
 
     public boolean isRoot(NodoOrdenamiento<T> nodo) {
         return this.raiz == nodo;
@@ -175,5 +176,36 @@ public class ArbolOrdenamiento<T extends Comparable<T>> {
         System.out.print(nodo.getValor().toString()+ " ");
 
     }
-
+    
+    public int altura(NodoOrdenamiento<T> nodo){
+        
+        int altura = 0;
+        
+        if(isInterno(nodo)){
+            
+            if(nodo.getNodoIzq() != null){
+                altura = Math.max(altura, altura(nodo.getNodoIzq()));
+            }
+            
+            if(nodo.getNodoDer() != null){
+                altura = Math.max(altura, altura(nodo.getNodoDer()));
+            }
+            
+            altura++;
+        }
+        
+        return altura;
+    }
+    
+    public int profundidad(NodoOrdenamiento<T> nodo){
+        int profundidad = 0;
+        
+        if(nodo != getRaiz()){
+            profundidad = 1 + profundidad(nodo.getPadre());
+        }
+        
+        return profundidad;
+        
+    }
+    
 }
