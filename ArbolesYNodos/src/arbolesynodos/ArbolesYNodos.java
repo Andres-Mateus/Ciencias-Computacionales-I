@@ -18,7 +18,7 @@ public class ArbolesYNodos {
         arbol.insertarNodoRecursivo(arbol.getRaiz(), -1);
         arbol.insertarNodoIterativo(1);
         
-        //arbol.imprimir();
+        arbol.imprimir();
         
         /*
         arbol.preOrden(arbol.getRaíz());
@@ -31,7 +31,7 @@ public class ArbolesYNodos {
         System.out.println("");
         */
         
-        System.out.println(arbol.altura(t));
+        System.out.println("\n"+arbol.altura(t));
         System.out.println(arbol.profundidad(t));
     }
     

@@ -13,7 +13,7 @@ public class ArbolOrdenamiento<T extends Comparable<T>> {
     }
 
 
-    public boolean isRoot(NodoOrdenamiento<T> nodo) {
+    public boolean isRaiz(NodoOrdenamiento<T> nodo) {
         return this.raiz == nodo;
     }
 
@@ -206,6 +206,96 @@ public class ArbolOrdenamiento<T extends Comparable<T>> {
         
         return profundidad;
         
+    }
+    
+    private final int SOLO_NODO_IZQ  = 1;
+    private final int SOLO_NODO_DER = 2;
+    private final int DOS_NODOS = 3;
+    
+    public void eliminar(NodoOrdenamiento<T> nodo){
+        if (this.raiz == null) {
+            System.out.println("No existe nodo que borrar");
+        }else if (isHoja(nodo)) {
+            
+        }else if (nodo.getNodoDer() != null && nodo.getNodoIzq() == null) {
+            
+        }else if (nodo.getNodoDer() == null && nodo.getNodoIzq() != null){
+            
+        }else{
+            
+        }
+    }
+    
+    private void eliminarHoja(NodoOrdenamiento<T> nodo){
+        
+        NodoOrdenamiento<T> padre = null;
+        
+        if(isRaiz(nodo)){
+            this.raiz = null;
+        }else{
+            padre = nodo.getPadre();
+            
+            if (padre.getNodoIzq() == nodo) {
+                padre.setNodoIzq(null);
+            }
+            
+            if (padre.getNodoDer() == nodo) {
+                padre.setNodoDer(null);
+            }
+            
+            nodo = null;
+        }
+    }
+    
+    private void eliminarConHijo(NodoOrdenamiento<T> nodo, int tipoNodo){
+        
+        NodoOrdenamiento<T> nodoSucesivo;
+        
+        switch(tipoNodo){
+            case SOLO_NODO_IZQ:
+                nodoSucesivo = nodo.getNodoIzq();
+                break;
+            case SOLO_NODO_DER:
+                nodoSucesivo = minSubArbol(nodo.getNodoDer());
+                break;
+            case DOS_NODOS:
+                nodoSucesivo = minSubArbol(nodo.getNodoDer());
+                
+                if(!isRaiz(nodoSucesivo.getPadre())){
+                    
+                    
+                    nodo.getNodoIzq().setPadre(nodoSucesivo);
+                    nodo.getNodoDer().setPadre(nodoSucesivo);
+                    
+                    if(nodoSucesivo.getPadre().getNodoIzq() == nodoSucesivo){
+                        
+                        nodoSucesivo.getPadre().setNodoIzq(null);
+                        
+                    }else if(nodoSucesivo.getPadre().getNodoDer() == nodoSucesivo){
+                        
+                        nodoSucesivo.getPadre().setNodoDer(null);
+                        
+                    }
+                    
+                }
+                break;
+        }
+        
+        
+        
+    }
+    
+    private NodoOrdenamiento<T> minSubArbol(NodoOrdenamiento<T> nodo){
+        
+        if(nodo != null && nodo.getNodoIzq() != null){
+            
+            while(!isHoja(nodo)){
+                nodo = minSubArbol(nodo.getNodoIzq());
+            }
+            
+        }
+        
+        return nodo;
     }
     
 }
